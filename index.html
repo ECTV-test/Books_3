@@ -776,11 +776,27 @@ async function loadCatalog(){
 async function loadBook(id){
   if(state.bookCache.has(id)) return state.bookCache.get(id);
 
-  const remoteUrl = `books/${encodeURIComponent(id)}/book.json`;
+  const basePath = `books/${encodeURIComponent(id)}`;
+  const remoteUrl = `${basePath}/book.json`;
+
   try{
     const res = await fetch(remoteUrl, {cache:"no-store"});
     if(!res.ok) throw new Error("book not ok");
     const raw = await res.json();
+
+    // ✅ NEW: if no "text", try load plain text file
+    if(!raw.text){
+      const textFile = raw.textFile || "book.txt"; // можно менять в book.json
+      const txtRes = await fetch(`${basePath}/${textFile}`, {cache:"no-store"});
+      if(txtRes.ok){
+        let txt = await txtRes.text();
+        // remove BOM if any + normalize line endings
+        txt = txt.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+        raw.text = txt.split("\n"); // сохраняем пустые строки как ""
+      }else{
+        raw.text = []; // если файла нет — просто пусто
+      }
+    }
 
     const book = normalizeBookJson(raw, id);
 
