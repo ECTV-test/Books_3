@@ -1,0 +1,17 @@
+{
+  "id": "sample-book",
+  "series": "DEMO",
+  "title_ua": "Demo Book",
+  "title_en": "Demo Book",
+  "level": "A2",
+  "narrator": "—",
+  "durationMin": 5,
+  "description": "A tiny demo book to show folder-based loading.",
+  "cover": "cover.jpg",
+  "text": [
+    "Demo Book",
+    "Chapter 1: Hello",
+    "This is a short demo paragraph.",
+    "Add more lines to book.json to grow the text."
+  ]
+}
