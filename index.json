@@ -1,0 +1,18 @@
+[
+  {
+    "id": "invisible-sandwich",
+    "series": "NEW",
+    "title_ua": "The Invisible Sandwich",
+    "title_en": "The Invisible Sandwich",
+    "level": "A1 English Learners",
+    "durationMin": 12
+  },
+  {
+    "id": "sample-book",
+    "series": "DEMO",
+    "title_ua": "Demo Book",
+    "title_en": "Demo Book",
+    "level": "A2",
+    "durationMin": 5
+  }
+]
